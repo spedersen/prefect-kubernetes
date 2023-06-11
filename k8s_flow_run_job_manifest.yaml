@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  # labels are required, even if empty
+  labels: {}
+spec:
+  template:
+    spec:
+      completions: 1
+      containers:  # the first container is required
+      - env: []  # env is required, even if empty
+        name: prefect-job
+      parallelism: 1
+      restartPolicy: Never
+

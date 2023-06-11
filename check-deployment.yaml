@@ -1,0 +1,74 @@
+###
+### A complete description of a Prefect Deployment for flow 'check'
+###
+name: custom-base
+description: null
+version: 46ea9105de9bdd6b5f366e566449cead
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+work_pool_name: null
+tags: []
+parameters: {}
+schedule: null
+is_schedule_active: null
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: check
+manifest_path: null
+infrastructure:
+  type: kubernetes-job
+  env:
+    EXTRA_PIP_PACKAGES: s3fs
+  labels: {}
+  name: null
+  command: null
+  image: prefecthq/prefect:2-python3.10
+  namespace: default
+  service_account_name: null
+  image_pull_policy: Always
+  cluster_config: null
+  job:
+    kind: Job
+    spec:
+      template:
+        spec:
+          containers:
+          - env: []
+            name: prefect-job
+          completions: 1
+          parallelism: 1
+          restartPolicy: Never
+    metadata:
+      labels: {}
+    apiVersion: batch/v1
+  customizations: []
+  job_watch_timeout_seconds: 6000
+  pod_watch_timeout_seconds: 6000
+  stream_output: true
+  finished_job_ttl: null
+  _block_document_id: 11ab726a-27a8-42ca-9aa3-a6b75eaae35b
+  _block_document_name: marvin3
+  _is_anonymous: false
+  block_type_slug: kubernetes-job
+  _block_type_slug: kubernetes-job
+storage:
+  bucket_path: prefect-k8s-demo-project
+  aws_access_key_id: '**********'
+  aws_secret_access_key: '**********'
+  _block_document_id: 9540b500-e672-4438-8e47-ff189520631e
+  _block_document_name: prefect-k8s
+  _is_anonymous: false
+  block_type_slug: s3
+  _block_type_slug: s3
+path: ''
+entrypoint: flows.py:check
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties: {}
+  required: null
+  definitions: null
+timestamp: '2023-06-05T00:15:23.125454+00:00'
